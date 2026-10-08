@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "ask-my-docs"
+version = "0.1.0"
+description = "Self-hosted RAG service: upload your documents, ask questions, get answers with sources. FastAPI, async workers, Telegram bot."
+authors = ["koishi700 <niggudas@list.ru>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "ask_my_docs", from = "src" }]
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.16.10"
+pytest = "^9.1.1"
+pytest-asyncio = "^1.4.0"
+pre-commit = "^4.6.2"
+mypy = "^2.4.0"
+
+[tool.ruff]
+target-version= "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle: стиль (pep8)
+    "F",      # pyflakes: неиспользуемые импорты, неопределённые имена
+    "I",      # isort: порядок импортов
+    "UP",     # pyupgrade: современный синтаксис (list[int] вместо List[int])
+    "B",      # bugbear: типичные ошибки (изменяемые дефолты и т.п.)
+    "SIM",    # упрощения кода
+    "ASYNC",  # блокирующие вызовы внутри async def
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = false
+warn_unused_ignores = true
+warn_redundant_casts = true
+ignore_missing_imports = false
+
+[[tool.mypy.overrides]]
+module = "ask_my_docs.*"
+disallow_untyped_defs = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

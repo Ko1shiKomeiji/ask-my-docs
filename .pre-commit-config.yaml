@@ -1,0 +1,7 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.10        # ← та же версия, что у ruff в pyproject
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
