@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from ask_my_docs.config import get_settings
+from ask_my_docs.core.config import get_settings
 
 
 @pytest.fixture(autouse=True)

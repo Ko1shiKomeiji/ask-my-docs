@@ -1,7 +1,7 @@
 from pydantic import ValidationError
 from pytest import MonkeyPatch, mark, raises
 
-from ask_my_docs.config import get_settings
+from ask_my_docs.core.config import get_settings
 
 
 @mark.parametrize("raw", ["local", "LOCAL", "Local"])

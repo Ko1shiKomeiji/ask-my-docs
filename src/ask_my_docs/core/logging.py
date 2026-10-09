@@ -3,7 +3,7 @@ import logging
 import structlog
 from structlog.typing import Processor
 
-from ask_my_docs.config import Settings
+from ask_my_docs.core.config import Settings
 
 
 def configure_logging(settings: Settings) -> None:
