@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from ask_my_docs.api.routers import health
 from ask_my_docs.core.config import Settings, get_settings
 from ask_my_docs.core.logging import configure_logging
 from ask_my_docs.core.middleware import RequestIDMiddleware
@@ -29,4 +30,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(lifespan=lifespan)
     app.state.settings = settings
     app.add_middleware(RequestIDMiddleware)
+    app.include_router(health.router)
     return app
