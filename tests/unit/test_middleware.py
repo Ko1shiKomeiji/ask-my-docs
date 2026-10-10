@@ -6,6 +6,7 @@ import structlog
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+from ask_my_docs.core import middleware
 from ask_my_docs.core.middleware import REQUEST_ID_HEADER, RequestIDMiddleware
 
 
@@ -48,3 +49,15 @@ def test_request_ids_differ_between_requests(client: TestClient) -> None:
     response1 = client.get("/ping")
     response2 = client.get("/ping")
     assert response1.headers[REQUEST_ID_HEADER] != response2.headers[REQUEST_ID_HEADER]
+
+
+def test_logs_request_line(client: TestClient, monkeypatch: pytest.MonkeyPatch) -> None:
+    with structlog.testing.capture_logs() as logs:
+        monkeypatch.setattr(middleware, "logger", structlog.get_logger())
+        client.get("/ping", headers={REQUEST_ID_HEADER: "abc-123"})
+
+    [entry] = [e for e in logs if e["event"] == "request"]
+    assert entry["method"] == "GET"
+    assert entry["path"] == "/ping"
+    assert entry["status_code"] == 200
+    assert entry["duration_ms"] >= 0

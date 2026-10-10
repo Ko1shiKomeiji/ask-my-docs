@@ -15,7 +15,7 @@ def _upper(v: object) -> object:
 
 
 Env = Annotated[Literal["local", "test", "prod"], BeforeValidator(_lower)]
-Log_level = Annotated[Literal["INFO", "DEBUG", "WARNING", "ERROR"], BeforeValidator(_upper)]
+LogLevel = Annotated[Literal["INFO", "DEBUG", "WARNING", "ERROR"], BeforeValidator(_upper)]
 
 
 class Settings(BaseSettings):
@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     env: Env = "local"
     max_upload_mb: int = Field(default=30, gt=0, lt=50)
     storage_dir: Path = Path("data/uploads")
-    log_level: Log_level = "INFO"
+    log_level: LogLevel = "INFO"
     log_json: bool = False
 
 

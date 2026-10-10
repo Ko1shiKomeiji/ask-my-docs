@@ -10,7 +10,7 @@ def test_config_env_field_case_insensitive(raw: str, monkeypatch: MonkeyPatch) -
     assert get_settings().env == "local"
 
 
-@mark.parametrize("raw", ["info", "INFO", "INFO"])
+@mark.parametrize("raw", ["info", "INFO", "Info"])
 def test_config_log_level_field_case_insensitive(raw: str, monkeypatch: MonkeyPatch) -> None:
     monkeypatch.setenv("LOG_LEVEL", raw)
     assert get_settings().log_level == "INFO"

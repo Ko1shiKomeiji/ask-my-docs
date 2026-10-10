@@ -55,13 +55,14 @@ async def _http_error_handler(request: Request, exc: StarletteHTTPException) -> 
 
 
 async def _validation_error_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
-    errors = exc.errors()
-    logger.info("validation_error", errors=errors)
+    # без поля "input": в нём сырые данные клиента, им не место ни в логах, ни в ответе
+    details = [{"loc": e["loc"], "msg": e["msg"]} for e in exc.errors()]
+    logger.info("validation_error", errors=details)
     return _error_response(
         status.HTTP_422_UNPROCESSABLE_CONTENT,
         "validation_error",
         "Request validation failed",
-        details=[{"loc": e["loc"], "msg": e["msg"]} for e in errors],
+        details=details,
     )
 
 
