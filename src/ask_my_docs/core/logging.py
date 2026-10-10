@@ -1,6 +1,7 @@
 import logging
 
 import structlog
+from structlog.processors import CallsiteParameter
 from structlog.typing import Processor
 
 from ask_my_docs.core.config import Settings
@@ -12,6 +13,9 @@ def configure_logging(settings: Settings) -> None:
         structlog.processors.add_log_level,
         structlog.processors.TimeStamper(fmt="iso", utc=True),
         structlog.processors.StackInfoRenderer(),
+        structlog.processors.CallsiteParameterAdder(
+            {CallsiteParameter.MODULE, CallsiteParameter.FUNC_NAME, CallsiteParameter.LINENO}
+        ),
     ]
 
     renderer: list[Processor]
