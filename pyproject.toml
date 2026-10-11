@@ -2,7 +2,7 @@
 name = "ask-my-docs"
 version = "0.1.0"
 description = "Self-hosted RAG service: upload your documents, ask questions, get answers with sources. FastAPI, async workers, Telegram bot."
-authors = ["koishi700 <niggudas@list.ru>"]
+authors = ["KoishiKomeiji <115187778+Ko1shiKomeiji@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{ include = "ask_my_docs", from = "src" }]
@@ -10,6 +10,13 @@ packages = [{ include = "ask_my_docs", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
+pydantic = "^2.14.0"
+pydantic-settings = "^2.15.0"
+structlog = "^26.1.0"
+fastapi = "^0.143.0"
+uvicorn = {extras = ["standard"], version = "^0.54.0"}
+sqlalchemy = {extras = ["asyncio"], version = "^2.1.4"}
+asyncpg = "^0.32.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -18,6 +25,7 @@ pytest = "^9.1.1"
 pytest-asyncio = "^1.4.0"
 pre-commit = "^4.6.2"
 mypy = "^2.4.0"
+httpx2 = "^2.13.1"
 
 [tool.ruff]
 target-version= "py312"
@@ -40,6 +48,7 @@ strict = false
 warn_unused_ignores = true
 warn_redundant_casts = true
 ignore_missing_imports = false
+plugins = ["pydantic.mypy"]
 
 [[tool.mypy.overrides]]
 module = "ask_my_docs.*"
