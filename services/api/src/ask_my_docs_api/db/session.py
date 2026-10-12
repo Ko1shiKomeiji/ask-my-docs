@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from ask_my_docs.core.config import Settings
+from ask_my_docs_api.core.config import Settings
 
 
 def build_engine(settings: Settings) -> AsyncEngine:

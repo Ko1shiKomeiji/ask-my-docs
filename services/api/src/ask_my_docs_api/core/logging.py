@@ -4,7 +4,7 @@ import structlog
 from structlog.processors import CallsiteParameter
 from structlog.typing import Processor
 
-from ask_my_docs.core.config import Settings
+from ask_my_docs_api.core.config import Settings
 
 
 def configure_logging(settings: Settings) -> None:

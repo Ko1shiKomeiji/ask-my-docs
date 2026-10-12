@@ -16,6 +16,9 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    defaults: 
+      run: 
+        working-directory: services/api
 
     steps:
       - name: Checkout code
@@ -27,6 +30,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
+          cache-dependency-path: services/api/poetry.lock
           python-version: "3.12"
           cache: poetry
 

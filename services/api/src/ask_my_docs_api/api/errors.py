@@ -7,8 +7,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from ask_my_docs.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
-from ask_my_docs.core.middleware import REQUEST_ID_HEADER
+from ask_my_docs_api.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
+from ask_my_docs_api.core.middleware import REQUEST_ID_HEADER
 
 logger = structlog.get_logger()
 

@@ -2,10 +2,10 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ask_my_docs.api.errors import register_exception_handlers
-from ask_my_docs.api.main import create_app
-from ask_my_docs.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
-from ask_my_docs.core.middleware import REQUEST_ID_HEADER, RequestIDMiddleware
+from ask_my_docs_api.api.errors import register_exception_handlers
+from ask_my_docs_api.api.main import create_app
+from ask_my_docs_api.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
+from ask_my_docs_api.core.middleware import REQUEST_ID_HEADER, RequestIDMiddleware
 
 
 def make_client(exc: Exception) -> TestClient:
