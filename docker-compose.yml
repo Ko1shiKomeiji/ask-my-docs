@@ -17,7 +17,9 @@ services:
       start_period: 30s
 
   api:
-    build: .
+    build: 
+      context: .
+      dockerfile: services/api/Dockerfile
     depends_on:
       db:
         condition: service_healthy
