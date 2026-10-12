@@ -21,7 +21,7 @@ LogLevel = Annotated[Literal["INFO", "DEBUG", "WARNING", "ERROR"], BeforeValidat
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_nested_delimiter="__", extra="ignore")
 
-    database_url: SecretStr
+    database_url: dfdfSecretStr
     env: Env = "local"
     max_upload_mb: int = Field(default=30, gt=0, lt=50)
     storage_dir: Path = Path("data/uploads")
