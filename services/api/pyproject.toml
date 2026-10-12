@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Self-hosted RAG service: upload your documents, ask questions, get answers with sources. FastAPI, async workers, Telegram bot."
 authors = ["KoishiKomeiji <115187778+Ko1shiKomeiji@users.noreply.github.com>"]
 license = "MIT"
-readme = "README.md"
 packages = [{ include = "ask_my_docs", from = "src" }]
 
 
