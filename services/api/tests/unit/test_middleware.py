@@ -6,8 +6,8 @@ import structlog
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ask_my_docs.core import middleware
-from ask_my_docs.core.middleware import REQUEST_ID_HEADER, RequestIDMiddleware
+from ask_my_docs_api.core import middleware
+from ask_my_docs_api.core.middleware import REQUEST_ID_HEADER, RequestIDMiddleware
 
 
 @pytest.fixture

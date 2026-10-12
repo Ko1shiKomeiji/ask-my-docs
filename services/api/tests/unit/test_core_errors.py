@@ -1,6 +1,6 @@
 import pytest
 
-from ask_my_docs.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
+from ask_my_docs_api.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
 
 
 def test_custom_message_overrides_default() -> None:

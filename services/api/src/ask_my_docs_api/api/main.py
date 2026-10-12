@@ -3,12 +3,12 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from ask_my_docs.api.errors import register_exception_handlers
-from ask_my_docs.api.routers import health
-from ask_my_docs.core.config import Settings, get_settings
-from ask_my_docs.core.logging import configure_logging
-from ask_my_docs.core.middleware import RequestIDMiddleware
-from ask_my_docs.db.session import build_engine, build_sessionmaker
+from ask_my_docs_api.api.errors import register_exception_handlers
+from ask_my_docs_api.api.routers import health
+from ask_my_docs_api.core.config import Settings, get_settings
+from ask_my_docs_api.core.logging import configure_logging
+from ask_my_docs_api.core.middleware import RequestIDMiddleware
+from ask_my_docs_api.db.session import build_engine, build_sessionmaker
 
 
 @asynccontextmanager
