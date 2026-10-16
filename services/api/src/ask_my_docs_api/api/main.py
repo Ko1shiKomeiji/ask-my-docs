@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 from ask_my_docs_api.api.errors import register_exception_handlers
 from ask_my_docs_api.api.routers import health
+from ask_my_docs_api.api.v1 import router as v1_router
 from ask_my_docs_api.core.config import Settings, get_settings
 from ask_my_docs_api.core.logging import configure_logging
 from ask_my_docs_api.core.middleware import RequestIDMiddleware
@@ -32,5 +33,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.state.settings = settings
     app.add_middleware(RequestIDMiddleware)
     app.include_router(health.router)
+    app.include_router(v1_router.router)
     register_exception_handlers(app)
     return app
