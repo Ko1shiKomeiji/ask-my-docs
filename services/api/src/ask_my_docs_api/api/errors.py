@@ -7,7 +7,13 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from ask_my_docs_api.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
+from ask_my_docs_api.core.errors import (
+    AppError,
+    BadRequestError,
+    ConflictError,
+    NotFoundError,
+    UnauthorizedError,
+)
 from ask_my_docs_api.core.middleware import REQUEST_ID_HEADER
 
 logger = structlog.get_logger()
@@ -16,6 +22,7 @@ _STATUS_BY_ERROR: dict[type[AppError], int] = {
     NotFoundError: status.HTTP_404_NOT_FOUND,
     BadRequestError: status.HTTP_400_BAD_REQUEST,
     ConflictError: status.HTTP_409_CONFLICT,
+    UnauthorizedError: status.HTTP_401_UNAUTHORIZED,
 }
 
 

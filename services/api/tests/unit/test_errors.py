@@ -4,7 +4,13 @@ from fastapi.testclient import TestClient
 
 from ask_my_docs_api.api.errors import register_exception_handlers
 from ask_my_docs_api.api.main import create_app
-from ask_my_docs_api.core.errors import AppError, BadRequestError, ConflictError, NotFoundError
+from ask_my_docs_api.core.errors import (
+    AppError,
+    BadRequestError,
+    ConflictError,
+    NotFoundError,
+    UnauthorizedError,
+)
 from ask_my_docs_api.core.middleware import REQUEST_ID_HEADER, RequestIDMiddleware
 
 
@@ -38,12 +44,13 @@ def test_unhandled_error_hides_details() -> None:
 @pytest.mark.parametrize(
     ("exc", "status_code", "code"),
     [
+        (UnauthorizedError("x"), 401, "unauthorized"),
         (NotFoundError("x"), 404, "not_found"),
         (BadRequestError("x"), 400, "bad_request"),
         (ConflictError("x"), 409, "conflict"),
         (AppError("x"), 500, "internal"),
     ],
-    ids=["not_found", "bad_request", "conflict", "base_app_error"],
+    ids=["unauthorized", "not_found", "bad_request", "conflict", "base_app_error"],
 )
 def test_app_error_response(exc: AppError, status_code: int, code: str) -> None:
     client = make_client(exc)
