@@ -21,3 +21,8 @@ class BadRequestError(AppError):
 class ConflictError(AppError):
     code = "conflict"
     default_message = "Conflict Error"
+
+
+class UnauthorizedError(AppError):
+    code = "unauthorized"
+    default_message = "Invalid or missing API key"
